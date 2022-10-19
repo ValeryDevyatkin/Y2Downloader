@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Y2Downloader.Services.Y2Mate")]
+[assembly: AssemblyTitle("Y2Downloader.MusicDownloader.Y2Mate")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Y2Downloader.Services.Y2Mate")]
+[assembly: AssemblyProduct("Y2Downloader.MusicDownloader.Y2Mate")]
 [assembly: AssemblyCopyright("Copyright ©  2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("4d9da4ca-7c37-4a8c-94e5-b9c9b9935711")]
+[assembly: Guid("b00461f0-2c6d-4035-9f95-31eae696bae4")]
 
 // Version information for an assembly consists of the following four values:
 //

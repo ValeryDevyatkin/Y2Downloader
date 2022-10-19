@@ -1,11 +1,13 @@
 ﻿using Unity;
 using Y2Downloader.App;
 using Y2Downloader.Common.Interfaces;
+using Y2Downloader.LinkReader.Disc.Services;
 using Y2Downloader.Logger.Disc.Services;
+using Y2Downloader.MusicDownloader.Y2Mate.Services;
 
 namespace Y2Downloader.IoC.Unity
 {
-    public class IoCManager : IIoCManager
+    public class UnityContainerManager : IIoCManager
     {
         private readonly IUnityContainer _container = new UnityContainer();
 
@@ -13,7 +15,8 @@ namespace Y2Downloader.IoC.Unity
         {
             _container
                .RegisterSingleton<ILogger, DiscLogger>()
-               .RegisterSingleton<IY2DownloadService, IY2DownloadService>()
+               .RegisterSingleton<ILinkReader, DiscLinkReader>()
+               .RegisterSingleton<IY2Downloader, Y2MateDownloader>()
                .RegisterSingleton<IY2DownloaderApp, Y2DownloaderApp>()
                 ;
         }

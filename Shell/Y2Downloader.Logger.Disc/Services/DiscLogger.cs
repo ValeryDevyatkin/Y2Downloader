@@ -9,12 +9,14 @@ namespace Y2Downloader.Logger.Disc.Services
 {
     public class DiscLogger : ILogger
     {
+        private const string RootFolderName = "Downloads";
+        private const string ErrorLogFileName = "err.log";
         private string _logDirectory;
         private string _logFullPath;
 
         public void Init()
         {
-            SetLogPath();
+            SetPath();
         }
 
         public async Task LogErrorAsync(Exception e)
@@ -40,14 +42,13 @@ namespace Y2Downloader.Logger.Disc.Services
             await streamWriter.WriteAsync(stringBuilder.ToString());
         }
 
-        private void SetLogPath()
+        private void SetPath()
         {
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            var rootPath = Path.GetDirectoryName(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
             var assemblyName = Assembly.GetEntryAssembly().GetName().Name;
-            var fileName = "err.log";
 
-            _logDirectory = Path.Combine(documentsPath, assemblyName);
-            _logFullPath = Path.Combine(_logDirectory, fileName);
+            _logDirectory = Path.Combine(rootPath, RootFolderName, assemblyName);
+            _logFullPath = Path.Combine(_logDirectory, ErrorLogFileName);
         }
     }
 }

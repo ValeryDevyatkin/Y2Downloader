@@ -22,17 +22,15 @@ namespace Y2Downloader
             try
             {
                 SetDefaultConsoleColor();
+                Console.WriteLine("Okaaaay... Let's goo!");
 
-                IIoCManager container = new IoCManager();
+                IIoCManager container = new UnityContainerManager();
                 container.RegisterTypes();
                 container.RegisterSettings<AppSettings>();
 
                 var app = container.GetApp();
                 app.Init();
                 await container.GetApp().RunAsync();
-
-                //var result = await downloader.DownloadFromLinksAsync(new[]
-                //    {"https://www.youtube.com/watch?v=8UvZHoypU0s"});
             }
             catch (Exception e)
             {

@@ -2,5 +2,8 @@
 {
     public interface IAppSettings
     {
+        int SourceLocationProcessDelay { get; }
+
+        void Init();
     }
 }
