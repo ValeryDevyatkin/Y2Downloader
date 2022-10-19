@@ -22,7 +22,6 @@ namespace Y2Downloader
             try
             {
                 SetDefaultConsoleColor();
-                Console.WriteLine("Okaaaay... Let's goo!");
 
                 IIoCManager container = new UnityContainerManager();
                 container.RegisterTypes();

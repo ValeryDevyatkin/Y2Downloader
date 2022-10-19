@@ -70,7 +70,7 @@ namespace Y2Downloader.LinkReader.Disc.Services
 
             foreach (var link in links)
             {
-                stringBuilder.Append(link);
+                stringBuilder.AppendLine(link);
             }
 
             using var streamWriter = File.AppendText(_failedLinksFile);
