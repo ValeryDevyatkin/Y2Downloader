@@ -65,6 +65,10 @@
       <Project>{78F5493D-3310-4FB1-B3B5-E82AD0C0FD77}</Project>
       <Name>Y2Downloader.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Shell\Y2Downloader.IoC.Unity\Y2Downloader.IoC.Unity.csproj">
+      <Project>{9A8B849F-DBBF-4B90-A661-4205A461EF5C}</Project>
+      <Name>Y2Downloader.IoC.Unity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Shell\Y2Downloader.Logger.Disc\Y2Downloader.Logger.Disc.csproj">
       <Project>{B67203A1-3C79-4168-AB82-D1A5B2F81139}</Project>
       <Name>Y2Downloader.Logger.Disc</Name>
