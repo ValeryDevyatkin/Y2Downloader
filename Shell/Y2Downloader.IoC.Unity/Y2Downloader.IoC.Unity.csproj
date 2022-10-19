@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{16053FE9-C89E-49AF-8E6F-40D82EC8122D}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>Y2Downloader</RootNamespace>
-    <AssemblyName>Y2Downloader</AssemblyName>
+    <ProjectGuid>{9A8B849F-DBBF-4B90-A661-4205A461EF5C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Y2Downloader.IoC.Unity</RootNamespace>
+    <AssemblyName>Y2Downloader.IoC.Unity</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -52,27 +50,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppSettings.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="IoCManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shell\Y2Downloader.Common\Y2Downloader.Common.csproj">
+    <ProjectReference Include="..\..\Y2Downloader.App\Y2Downloader.App.csproj">
+      <Project>{D84D3075-ABA1-4D46-972C-C4115D38CC1B}</Project>
+      <Name>Y2Downloader.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Y2Downloader.Common\Y2Downloader.Common.csproj">
       <Project>{78F5493D-3310-4FB1-B3B5-E82AD0C0FD77}</Project>
       <Name>Y2Downloader.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shell\Y2Downloader.Logger.Disc\Y2Downloader.Logger.Disc.csproj">
+    <ProjectReference Include="..\Y2Downloader.Logger.Disc\Y2Downloader.Logger.Disc.csproj">
       <Project>{B67203A1-3C79-4168-AB82-D1A5B2F81139}</Project>
       <Name>Y2Downloader.Logger.Disc</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Shell\Y2Downloader.Services.Y2Mate\Y2Downloader.Services.Y2Mate.csproj">
-      <Project>{4D9DA4CA-7C37-4A8C-94E5-B9C9B9935711}</Project>
-      <Name>Y2Downloader.Services.Y2Mate</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

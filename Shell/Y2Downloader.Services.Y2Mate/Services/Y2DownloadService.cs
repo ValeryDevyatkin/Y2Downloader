@@ -10,7 +10,7 @@ using Y2Sharp.Youtube;
 
 namespace Y2Downloader.Services.Y2Mate.Services
 {
-    internal class Y2DownloadService : IY2DownloadService
+    public class Y2DownloadService : IY2DownloadService
     {
         private static string _downloadPath;
         private readonly Regex _fileIdRegex = new Regex(@"^.*watch\?v=((.*)\&.*|(.*))$");

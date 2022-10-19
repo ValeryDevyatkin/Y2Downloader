@@ -55,7 +55,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Y2DownloadService.cs" />
-    <Compile Include="Y2DownloaderInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Y2Downloader.Common\Y2Downloader.Common.csproj">

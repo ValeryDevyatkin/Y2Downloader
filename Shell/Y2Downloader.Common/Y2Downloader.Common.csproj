@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IY2DownloaderApp.cs" />
+    <Compile Include="Interfaces\IAppSettings.cs" />
+    <Compile Include="Interfaces\IIoCManager.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
     <Compile Include="Interfaces\IY2DownloadService.cs" />
     <Compile Include="Items\Y2DownloadResult.cs" />

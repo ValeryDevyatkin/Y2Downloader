@@ -13,15 +13,6 @@ namespace Y2Downloader
         {
             try
             {
-                var container = new UnityContainer();
-                LoggerInitializer.Init(container);
-                Y2DownloaderInitializer.Init(container);
-
-                var logger = container.Resolve<ILogger>();
-                logger.Init();
-
-                var downloader = container.Resolve<IY2DownloadService>();
-                downloader.Init();
 
                 var result = await downloader.DownloadFromLinksAsync(new[]
                     {"https://www.youtube.com/watch?v=8UvZHoypU0s"});

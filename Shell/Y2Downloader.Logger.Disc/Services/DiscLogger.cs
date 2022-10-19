@@ -7,7 +7,7 @@ using Y2Downloader.Common.Interfaces;
 
 namespace Y2Downloader.Logger.Disc.Services
 {
-    internal class DiscLogger : ILogger
+    public class DiscLogger : ILogger
     {
         private string _logDirectory;
         private string _logFullPath;
