@@ -18,12 +18,14 @@ namespace Y2Downloader.MusicDownloader.Y2Mate.Services
         private const string AudioFileExtension = "mp3";
         private const string SpecSymbolRegex = @"[^a-zA-Z0-9_. \(\)\[\]-]+";
         private static string _downloadPath;
-        private readonly Regex _fileIdRegex = new Regex(@"^.*watch\?v=((.*)\&.*|(.*))$");
+        private readonly IClientLogger _clientLogger;
+        private readonly Regex _fileIdRegex = new Regex(@"^.*watch\?v=((.+?)\&.*|(.*))$");
         private readonly ILogger _logger;
 
-        public Y2MateDownloader(ILogger logger)
+        public Y2MateDownloader(ILogger logger, IClientLogger clientLogger)
         {
             _logger = logger;
+            _clientLogger = clientLogger;
         }
 
         public async Task<IDownloadResult> DownloadFromLinksAsync(ISet<string> links)
@@ -32,6 +34,8 @@ namespace Y2Downloader.MusicDownloader.Y2Mate.Services
             {
                 IsSuccessful = true
             };
+
+            var linkNumber = 1;
 
             foreach (var link in links)
             {
@@ -55,10 +59,7 @@ namespace Y2Downloader.MusicDownloader.Y2Mate.Services
 
                     if (string.IsNullOrWhiteSpace(videoId))
                     {
-                        await _logger.LogErrorAsync(
-                            new Exception($"Video ID was not found.\r\nSource link: [{link}]."));
-
-                        throw new NotImplementedException();
+                        throw new Exception($"Video ID was not found.\r\nSource link: [{link}].");
                     }
 
                     await Video.GetInfo(videoId);
@@ -75,14 +76,19 @@ namespace Y2Downloader.MusicDownloader.Y2Mate.Services
                     await video.DownloadAsync(
                         Path.Combine(_downloadPath, $"{fileNameWithNoSpecSymbols}.{AudioFileExtension}"),
                         AudioFileExtension, AudioFileQuality);
+
+                    _clientLogger.LogInfo($"Link downloaded: {linkNumber} - [{link}].");
                 }
                 catch (Exception e)
                 {
                     result.IsSuccessful = false;
                     result.FailedLinks.Add(link);
 
+                    _clientLogger.LogError(e);
                     await _logger.LogErrorAsync(e);
                 }
+
+                linkNumber++;
             }
 
             return result;

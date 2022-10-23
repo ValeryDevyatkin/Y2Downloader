@@ -3,7 +3,7 @@ using System.IO;
 using Microsoft.Extensions.Configuration;
 using Y2Downloader.Common.Interfaces;
 
-namespace Y2Downloader
+namespace Y2Downloader.Services
 {
     internal static class ConfigHelper
     {

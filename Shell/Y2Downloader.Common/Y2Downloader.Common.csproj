@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IClientLogger.cs" />
     <Compile Include="Interfaces\IDownloadResult.cs" />
     <Compile Include="Interfaces\ILinkReader.cs" />
     <Compile Include="Interfaces\IY2DownloaderApp.cs" />

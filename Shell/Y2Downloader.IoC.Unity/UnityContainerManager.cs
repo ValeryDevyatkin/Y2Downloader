@@ -26,6 +26,11 @@ namespace Y2Downloader.IoC.Unity
             _container.RegisterSingleton<IAppSettings, TSettings>();
         }
 
+        public void RegisterClientLogger<TLogger>() where TLogger : IClientLogger
+        {
+            _container.RegisterSingleton<IClientLogger, TLogger>();
+        }
+
         public IY2DownloaderApp GetApp() => _container.Resolve<IY2DownloaderApp>();
     }
 }

@@ -2,30 +2,20 @@
 using System.Threading.Tasks;
 using Y2Downloader.Common.Interfaces;
 using Y2Downloader.IoC.Unity;
+using Y2Downloader.Services;
 
 namespace Y2Downloader
 {
     internal class Program
     {
-        private static void SetDefaultConsoleColor()
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-        }
-
-        private static void SetErrorConsoleColor()
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-        }
-
         private static async Task Main(string[] args)
         {
             try
             {
-                SetDefaultConsoleColor();
-
                 IIoCManager container = new UnityContainerManager();
-                container.RegisterTypes();
+                container.RegisterClientLogger<ConsoleLogger>();
                 container.RegisterSettings<AppSettings>();
+                container.RegisterTypes();
 
                 var app = container.GetApp();
                 app.Init();
@@ -33,10 +23,15 @@ namespace Y2Downloader
             }
             catch (Exception e)
             {
-                SetErrorConsoleColor();
-                Console.WriteLine($"{e}\n{e.Message}\n{e.StackTrace}");
-                SetDefaultConsoleColor();
+                Console.BackgroundColor = ConsoleColor.DarkRed;
+                Console.ForegroundColor = ConsoleColor.Black;
+
+                Console.WriteLine("(>-:[CRITICAL ERROR]:-<)");
+                Console.WriteLine(e);
             }
+
+            Console.BackgroundColor = ConsoleColor.DarkBlue;
+            Console.ForegroundColor = ConsoleColor.Black;
 
             Console.WriteLine("Press 'Enter' to exit.");
             Console.ReadLine();
