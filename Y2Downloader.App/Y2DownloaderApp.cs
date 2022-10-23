@@ -46,8 +46,6 @@ namespace Y2Downloader.App
 
                         await _linkReader.SaveFailedLinksAsync(downloadResult.FailedLinks);
                     }
-
-                    await Task.Delay(_settings.SourceLocationProcessDelay);
                 }
                 catch (Exception e)
                 {
@@ -56,6 +54,8 @@ namespace Y2Downloader.App
                 }
 
                 _clientLogger.LogInfo("Cycle ended.");
+
+                await Task.Delay(_settings.SourceLocationProcessDelay);
             }
         }
 

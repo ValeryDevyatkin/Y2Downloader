@@ -23,15 +23,9 @@ namespace Y2Downloader
             }
             catch (Exception e)
             {
-                Console.BackgroundColor = ConsoleColor.DarkRed;
-                Console.ForegroundColor = ConsoleColor.Black;
-
                 Console.WriteLine("(>-:[CRITICAL ERROR]:-<)");
                 Console.WriteLine(e);
             }
-
-            Console.BackgroundColor = ConsoleColor.DarkBlue;
-            Console.ForegroundColor = ConsoleColor.Black;
 
             Console.WriteLine("Press 'Enter' to exit.");
             Console.ReadLine();
