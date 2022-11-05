@@ -94,8 +94,9 @@ namespace Y2Downloader.MusicDownloader.Y2Mate.Services
                     result.IsSuccessful = false;
                     result.FailedLinks.Add(link);
 
-                    _clientLogger.LogError(e);
-                    await _logger.LogErrorAsync(e);
+                    var errorTitle = link;
+                    _clientLogger.LogError(errorTitle, e);
+                    await _logger.LogErrorAsync(errorTitle, e);
                 }
 
                 linkNumber++;

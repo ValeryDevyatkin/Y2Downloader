@@ -5,8 +5,9 @@ namespace Y2Downloader.Services
 {
     internal class ConsoleLogger : IClientLogger
     {
-        public void LogError(Exception e)
+        public void LogError(string title, Exception e)
         {
+            Console.WriteLine(title);
             Console.WriteLine(e);
             Console.WriteLine();
         }

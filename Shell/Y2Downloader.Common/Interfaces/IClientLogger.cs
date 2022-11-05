@@ -4,7 +4,7 @@ namespace Y2Downloader.Common.Interfaces
 {
     public interface IClientLogger
     {
-        void LogError(Exception e);
+        void LogError(string title, Exception e);
         void LogInfo(string message);
     }
 }

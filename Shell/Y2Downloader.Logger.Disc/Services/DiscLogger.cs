@@ -19,7 +19,7 @@ namespace Y2Downloader.Logger.Disc.Services
             SetPath();
         }
 
-        public async Task LogErrorAsync(Exception e)
+        public async Task LogErrorAsync(string title, Exception e)
         {
             var directory = Path.GetDirectoryName(_logFullPath);
 
@@ -33,6 +33,7 @@ namespace Y2Downloader.Logger.Disc.Services
             var splitter = new string('-', 100);
             var stringBuilder = new StringBuilder();
             stringBuilder.AppendLine(DateTime.Now.ToString());
+            stringBuilder.AppendLine(title);
             stringBuilder.AppendLine(splitter);
             stringBuilder.AppendLine(e.ToString());
             stringBuilder.AppendLine(splitter);

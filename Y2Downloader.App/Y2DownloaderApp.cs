@@ -57,8 +57,9 @@ namespace Y2Downloader.App
                 }
                 catch (Exception e)
                 {
-                    _clientLogger.LogError(e);
-                    await _logger.LogErrorAsync(e);
+                    var errorTitle = nameof(RunAsync);
+                    _clientLogger.LogError(errorTitle, e);
+                    await _logger.LogErrorAsync(errorTitle, e);
                 }
 
                 await Task.Delay(_settings.SourceLocationProcessDelay);
