@@ -30,13 +30,15 @@ namespace Y2Downloader.App
         {
             while (true)
             {
-                _clientLogger.LogInfo("Cycle started.");
-
                 try
                 {
                     var links = await _linkReader.GetLinksAsync();
 
-                    _clientLogger.LogInfo($"Link count: {links.Count}.");
+                    if (links.Count > 0)
+                    {
+                        _clientLogger.LogInfo("Cycle started.");
+                        _clientLogger.LogInfo($"Found link count: {links.Count}.");
+                    }
 
                     var downloadResult = await _downloader.DownloadFromLinksAsync(links);
 
@@ -46,14 +48,18 @@ namespace Y2Downloader.App
 
                         await _linkReader.SaveFailedLinksAsync(downloadResult.FailedLinks);
                     }
+
+                    if (links.Count > 0)
+                    {
+                        _clientLogger.LogInfo($"Downloaded file count: {downloadResult.DownloadedFileCount}.");
+                        _clientLogger.LogInfo("Cycle ended.");
+                    }
                 }
                 catch (Exception e)
                 {
                     _clientLogger.LogError(e);
                     await _logger.LogErrorAsync(e);
                 }
-
-                _clientLogger.LogInfo("Cycle ended.");
 
                 await Task.Delay(_settings.SourceLocationProcessDelay);
             }

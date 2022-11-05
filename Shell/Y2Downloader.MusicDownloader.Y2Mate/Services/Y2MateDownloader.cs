@@ -35,6 +35,7 @@ namespace Y2Downloader.MusicDownloader.Y2Mate.Services
                 IsSuccessful = true
             };
 
+            var fileNameSet = new HashSet<string>();
             var linkNumber = 1;
 
             foreach (var link in links)
@@ -73,11 +74,20 @@ namespace Y2Downloader.MusicDownloader.Y2Mate.Services
                     var fileNameWithNoSpecSymbols =
                         Regex.Replace(video.Title, SpecSymbolRegex, "", RegexOptions.Compiled);
 
-                    await video.DownloadAsync(
-                        Path.Combine(_downloadPath, $"{fileNameWithNoSpecSymbols}.{AudioFileExtension}"),
-                        AudioFileExtension, AudioFileQuality);
+                    if (fileNameSet.Contains(fileNameWithNoSpecSymbols))
+                    {
+                        _clientLogger.LogInfo($"File duplicate was found for link: {linkNumber} - [{link}].");
+                    }
+                    else
+                    {
+                        fileNameSet.Add(fileNameWithNoSpecSymbols);
 
-                    _clientLogger.LogInfo($"Link downloaded: {linkNumber} - [{link}].");
+                        await video.DownloadAsync(
+                            Path.Combine(_downloadPath, $"{fileNameWithNoSpecSymbols}.{AudioFileExtension}"),
+                            AudioFileExtension, AudioFileQuality);
+
+                        _clientLogger.LogInfo($"Link downloaded: {linkNumber} - [{link}].");
+                    }
                 }
                 catch (Exception e)
                 {
@@ -90,6 +100,8 @@ namespace Y2Downloader.MusicDownloader.Y2Mate.Services
 
                 linkNumber++;
             }
+
+            result.DownloadedFileCount = fileNameSet.Count;
 
             return result;
         }

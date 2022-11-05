@@ -7,5 +7,7 @@ namespace Y2Downloader.Common.Interfaces
         bool IsSuccessful { get; }
 
         ISet<string> FailedLinks { get; }
+
+        int DownloadedFileCount { get; }
     }
 }
