@@ -50,7 +50,7 @@ public class Y2Downloader : IY2Downloader
                 
                 var video = await youtube.Videos.GetAsync(videoId);
                 var streamInfoSet = await youtube.Videos.Streams.GetManifestAsync(videoId);
-                var audioStreamInfo = streamInfoSet.GetAudioOnlyStreams();
+                var audioStreamInfo = streamInfoSet.GetAudioOnlyStreams().GetWithHighestBitrate();
 
                 var fileNameWithNoSpecSymbols = RegexPool.SpecSymbol().Replace(video.Title, "");
 
@@ -61,7 +61,7 @@ public class Y2Downloader : IY2Downloader
                 else
                 {
                     var saveFilePath = Path.Combine(downloadPath, $"{fileNameWithNoSpecSymbols}.{AudioFileExtension}");
-                    await youtube.Videos.Streams.DownloadAsync(audioStreamInfo.GetWithHighestBitrate(), saveFilePath);
+                    await youtube.Videos.Streams.DownloadAsync(audioStreamInfo, saveFilePath);
 
                     fileNameSet.Add(fileNameWithNoSpecSymbols);
 
