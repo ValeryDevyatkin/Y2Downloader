@@ -46,7 +46,7 @@ public class Y2Downloader : IY2Downloader
                 }
 
                 var youtube = new YoutubeClient();
-                var videoId = GetVideoId(link);
+                var videoId = UrlHelper.GetVideoId(link);
                 
                 var video = await youtube.Videos.GetAsync(videoId);
                 var streamInfoSet = await youtube.Videos.Streams.GetManifestAsync(videoId);
@@ -99,28 +99,5 @@ public class Y2Downloader : IY2Downloader
             throw ExceptionBuilder.SourceReturnedNoResult(nameof(Assembly.GetEntryAssembly));
 
         _downloadPath = Path.Combine(rootPath, RootFolderName, assemblyName, AudioFileDownloadFolderName);
-    }
-
-    private static string GetVideoId(string link)
-    {
-        var match = RegexPool.VideoId().Match(link);
-        string? videoId = null;
-
-        if (match is { Success: true, Groups.Count: 4 })
-        {
-            videoId = match.Groups[2].Value;
-
-            if (string.IsNullOrEmpty(videoId))
-            {
-                videoId = match.Groups[3].Value;
-            }
-        }
-
-        if (string.IsNullOrWhiteSpace(videoId))
-        {
-            throw new Exception($"Video ID was not found.\r\nSource link: [{link}].");
-        }
-
-        return videoId;
     }
 }
